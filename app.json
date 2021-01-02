@@ -8,11 +8,7 @@
   ],
   "website": "https://github.com/RabbitFored/Dwindle/",
   "repository": "https://github.com/RabbitFored/Dwindle/",
-  "logo": "https://small-sharp-tool.com/logo.svg",
-  "success_url": "/welcome",
-  "scripts": {
-    "postdeploy": "bundle exec rake bootstrap"
-  },
+  "success_url": "https://t.me/InterimOst_bot",
   "env": {
     "Bot_Token": {
       "description": "Your bot token",
@@ -33,10 +29,7 @@
       "size": "free"
     }
   },
-  "buildpacks": [
-    {
-      "url": "heroku/python"
-    }
-  ]
-}
+   "buildpacks":
+ [{ "url": "heroku/python" } ]
+ }
 
