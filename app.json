@@ -1,0 +1,37 @@
+{
+    "name": "Dwindle",
+    "description": "Make short link by using this bot",
+    "keywords": [
+        "telegram",
+        "gplink"
+    ],
+    "website": "https://github.com/RabbitFored/Dwindle",
+    "repository": "https://github.com/RabbitFored/Dwindle",
+    "env": {
+        "Bot_Token": {
+            "description": "Your bot token",
+            "value": ""
+        },
+        "GplinksApi": {
+            "description": "Get this value from https://gplinks.in/",
+            "value": ""
+        },
+        "BitLy_Api": {
+            "description": "Get this value from https://dev.bitly.com/",
+            "value": ""
+        },
+       
+    },
+    "addons": [],
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
+}
