@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 PORT = int(os.environ.get('PORT', 5000))
 
 TOKEN = os.environ.get('Bot_Token')
-GpApi = os.environ.get('GpApi')
+GpApi = os.environ.get('GpLinksApi')
 GpBase = "https://gplinks.in/api?api={}&url=".format(GpApi)
 bitlyApi = os.environ.get('BitLy_Api')
 bitlybase = "https://api-ssl.bitly.com/v3/shorten?access_token={}&uri=".format(bitlyApi)
