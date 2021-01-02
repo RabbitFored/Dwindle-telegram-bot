@@ -1,32 +1,36 @@
 {
-  "name": "Small Sharp Tool",
+  "name": "Dwindle",
   "description": "This app does one little thing, and does it well.",
   "keywords": [
     "productivity",
     "HTML5",
     "scalpel"
   ],
-  "website": "https://small-sharp-tool.com/",
-  "repository": "https://github.com/jane-doe/small-sharp-tool",
+  "website": "https://github.com/RabbitFored/Dwindle/",
+  "repository": "https://github.com/RabbitFored/Dwindle/",
   "logo": "https://small-sharp-tool.com/logo.svg",
   "success_url": "/welcome",
   "scripts": {
     "postdeploy": "bundle exec rake bootstrap"
   },
   "env": {
-    "SECRET_TOKEN": {
-      "description": "A secret key for verifying the integrity of signed cookies.",
-      "generator": "secret"
+    "Bot_Token": {
+      "description": "Your bot token",
+      "value": ""
     },
-    "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
-      "value": "5"
+    "BitLy_Api": {
+      "description": "Get this value from https://dev.bitly.com/",
+      "value": ""
+    },
+    "GplinksApi": {
+      "description": "Get this value from https://gplinks.in/",
+      "value": ""
     }
   },
   "formation": {
     "web": {
       "quantity": 1,
-      "size": "standard-1x"
+      "size": "free"
     }
   },
   "image": "heroku/ruby",
