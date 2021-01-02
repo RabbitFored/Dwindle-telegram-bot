@@ -4,10 +4,15 @@ import telegram
 from telegram.ext import Updater, CommandHandler, dispatcher, MessageHandler, Filters
 import emoji
 import os
-from Creds import TOKEN , GpBase ,  RareBase , bitlybase
 from bs4 import BeautifulSoup
 
 PORT = int(os.environ.get('PORT', 5000))
+
+TOKEN = os.environ.get('Bot_Token')
+GpApi = os.environ.get('GpApi')
+GpBase = "https://gplinks.in/api?api={}&url=".format(GpApi)
+bitlyApi = os.environ.get('BitLy_Api')
+bitlybase = "https://api-ssl.bitly.com/v3/shorten?access_token={}&uri=".format(bitlyApi)
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.INFO)
