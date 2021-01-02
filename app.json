@@ -33,18 +33,9 @@
       "size": "free"
     }
   },
-  "image": "heroku/ruby",
-  "addons": [],
   "buildpacks": [
     {
       "url": "heroku/python"
     }
   ],
-  "environments": {
-    "test": {
-      "scripts": {
-        "test": "bundle exec rake test"
-      }
-    }
-  }
 }
