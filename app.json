@@ -22,7 +22,7 @@
       "description": "Get this value from https://dev.bitly.com/",
       "value": ""
     },
-    "GplinksApi": {
+    "GpLinksApi": {
       "description": "Get this value from https://gplinks.in/",
       "value": ""
     }
