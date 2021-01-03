@@ -14,6 +14,10 @@
       "description": "Your bot token",
       "value": ""
     },
+    "WebHook":{
+       "description":"Enter Your Heroku app domain",
+       "value":""
+      },
     "BitLy_Api": {
       "description": "Get this value from https://dev.bitly.com/",
       "value": ""
