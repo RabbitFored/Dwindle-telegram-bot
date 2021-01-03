@@ -13,7 +13,7 @@ GpApi = os.environ.get('GpLinksApi')
 GpBase = "https://gplinks.in/api?api={}&url=".format(GpApi)
 bitlyApi = os.environ.get('BitLy_Api')
 bitlybase = "https://api-ssl.bitly.com/v3/shorten?access_token={}&uri=".format(bitlyApi)
-
+webhook = os.environ.get('WebHook')
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -40,14 +40,11 @@ def help(update, context):
 
 def short(update , context):
     gpintext = requests.get((GpBase + context.args[0])).json()
-    rarintext= requests.get(RareBase+context.args[0])
     bitlyintext = requests.get(bitlybase+context.args[0]).json()
     bi = bitlyintext['data']
-    soup = BeautifulSoup(rarintext.text, 'lxml')
 
     update.message.reply_text("*Your URL :* "+ context.args[0] +
-                              "\n\n*Shortened URL : *"
-                              "\n\t\t* - *"+soup.shorturl.string +
+                              "\n\n*Shortened URL : *"+
                               "\n\n\t\t* - *" + gpintext['shortenedUrl'] +
                               "\n\n\t\t* - *" + bi['url']+
                               "\n\n*You can Choose any of the above shortened links*", parse_mode=telegram.ParseMode.MARKDOWN)
@@ -70,7 +67,7 @@ def main():
     updater.start_webhook(listen="0.0.0.0",
                           port=int(PORT),
                           url_path=TOKEN)
-    updater.bot.setWebhook('https://dwindle-ost.herokuapp.com/' + TOKEN)
+    updater.bot.setWebhook(webhook + TOKEN)
 
     updater.idle()
 
