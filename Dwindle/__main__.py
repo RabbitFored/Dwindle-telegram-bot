@@ -94,7 +94,7 @@ def main():
     dispatcher.add_handler(CommandHandler("unshort", unshort.unshort))
     dispatcher.add_handler(CommandHandler("screen", screen.screen))
     dispatcher.add_handler(CommandHandler("about", aboutTheBot))
-    dispatcher.add_handler(CommandHandler("donate", donate))
+    dispatcher.add_handler(CommandHandler("donate", donate.donate))
     dispatcher.add_error_handler(error)
     updater.start_webhook(listen="0.0.0.0",
                           port=int(PORT),
