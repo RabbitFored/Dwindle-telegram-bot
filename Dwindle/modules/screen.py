@@ -1,6 +1,6 @@
 from selenium import webdriver
 import telegram
-from Dwindle.Config import TOKEN
+from Dwindle import TOKEN
 from time import sleep
 import requests
 import emoji
