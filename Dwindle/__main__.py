@@ -72,6 +72,17 @@ def button(update, context):
         print(query.data)
     query.edit_message_text(text="Support Group arrives Soon")
 
+def donate(update, context):
+    keyboard = [
+        [
+            telegram.InlineKeyboardButton("Contribute",
+                                          url="https://github.com/RabbitFored"),
+            telegram.InlineKeyboardButton("Paypal Us",url="https://paypal.me/donateostrich"),
+        ],
+    ]
+
+    reply_markup = telegram.InlineKeyboardMarkup(keyboard)
+    update.message.reply_text("Thank you for your wish to contribute. I hope you enjoyed using our services. Make a small donation/contribute to let this project alive." , reply_markup=reply_markup)
 
 def button(update, context):
     query = update.callback_query
@@ -94,7 +105,7 @@ def main():
     dispatcher.add_handler(CommandHandler("unshort", unshort.unshort))
     dispatcher.add_handler(CommandHandler("screen", screen.screen))
     dispatcher.add_handler(CommandHandler("about", aboutTheBot))
-    dispatcher.add_handler(CommandHandler("donate", donate.donate))
+    dispatcher.add_handler(CommandHandler("donate", donate))
     dispatcher.add_error_handler(error)
 
     if WEBHOOK:
