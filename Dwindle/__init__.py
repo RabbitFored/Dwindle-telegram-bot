@@ -19,8 +19,9 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 4:
 ENV = bool(os.environ.get('ENV', False))
 
 if ENV:
-    TOKEN = os.environ.get('TOKEN', None)
-    WEBHOOK = os.environ.get('WEBHOOK', None)
+    TOKEN = os.environ.get('BOT_TOKEN', None)
+    WEBHOOK = bool(os.environ.get('WEBHOOK', False))
+    URL = os.environ.get('PUBLIC_URL',"")
     PORT = int(os.environ.get('PORT', 5000))
     GpApi = os.environ.get('GpLinksApi')
     GpBase = "https://gplinks.in/api?api={}&url=".format(GpApi)
