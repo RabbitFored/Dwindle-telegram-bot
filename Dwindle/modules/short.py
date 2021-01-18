@@ -12,15 +12,13 @@ def short(update, context):
 
     if context.args[0] in platforms:
         if context.args[0] == "bitly":
-            update.message.reply_text("<b>Your URL : </b>" + context.args[1] + "\n\n<b>Shortened URL :</b>"
-                                                                               "\n\n<b> - </b>" + bi['url'] , parse_mode='html',
-                                      reply_to_message_id=update.message.message_id)
+            update.message.reply_text("<b>Your URL : </b>" + context.args[1] + "\n\n<b>Shortened URL :</b>"+
+                                       "\n\n<b> - </b>" + bi['url'] , parse_mode='html',reply_to_message_id=update.message.message_id)
 
         elif context.args[0] == "gplinks":
             update.message.reply_text("<b>Your URL : </b>" + context.args[1] +
-                                      "\n\n<b>Shortened URL :</b> "
-                                      "\n\n<b> - </b>" + gpintext['shortenedUrl'] , parse_mode='html',
-                                      reply_to_message_id=update.message.message_id)
+                                      "\n\n<b>Shortened URL :</b> "+
+                                      "\n\n<b> - </b>" + gpintext['shortenedUrl'] , parse_mode='html',reply_to_message_id=update.message.message_id)
 
     else:
         update.message.reply_text("Enter A valid Platform")
