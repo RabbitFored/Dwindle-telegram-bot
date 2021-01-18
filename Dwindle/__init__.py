@@ -19,7 +19,7 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 4:
 ENV = bool(os.environ.get('ENV', False))
 
 if ENV:
-    TOKEN = os.environ.get('Token', None)
+    TOKEN = os.environ.get('TOKEN', None)
     WEBHOOK = bool(os.environ.get('WEBHOOK', False))
     PORT = int(os.environ.get('PORT', 5000))
     GpApi = os.environ.get('GpLinksApi')
