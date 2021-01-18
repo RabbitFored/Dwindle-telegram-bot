@@ -6,7 +6,7 @@ from telegram.ext import CommandHandler
 
 def short(update, context):
     platforms = ['bitly', 'gplinks']
-    gpintext = requests.get((GpBase + context.args[1])).json()
+    gpintext = requests.get(GpBase + context.args[1]).json()
     bitlyintext = requests.get(bitlybase + context.args[1]).json()
     bi = bitlyintext['data']
 
