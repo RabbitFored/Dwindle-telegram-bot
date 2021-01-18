@@ -1,4 +1,4 @@
-from Dwindle.Config import GpBase, bitlybase, TOKEN
+from Dwindle import GpBase, bitlybase, TOKEN
 import requests
 from Dwindle import dispatcher
 from telegram.ext import CommandHandler
