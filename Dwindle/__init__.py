@@ -20,7 +20,7 @@ ENV = bool(os.environ.get('ENV', False))
 
 if ENV:
     TOKEN = os.environ.get('TOKEN', None)
-    WEBHOOK = bool(os.environ.get('WEBHOOK', False))
+    WEBHOOK = os.environ.get('WEBHOOK', None)
     PORT = int(os.environ.get('PORT', 5000))
     GpApi = os.environ.get('GpLinksApi')
     GpBase = "https://gplinks.in/api?api={}&url=".format(GpApi)
