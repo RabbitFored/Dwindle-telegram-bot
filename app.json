@@ -14,12 +14,16 @@
       "description": "Setting this to ANYTHING will enable env variables",
       "value": "OSTRICH"
     },
-    "TOKEN": {
+    "BOT_TOKEN": {
       "description": "Your bot token",
       "value": ""
     },
     "WEBHOOK":{
-       "description":"Enter Your Heroku app domain",
+       "description":"Setting this to ANYTHING will enable webhooks when in env mode messages",
+       "value":"TRUE"
+      },
+      "PUBLIC_URL":{
+       "description":"The Heroku App URL, similar to https://<appname>.herokuapp.com/",
        "value":""
       },
      "PORT": {
