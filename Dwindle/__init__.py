@@ -32,7 +32,8 @@ else:
     from Dwindle import Config
     TOKEN = Config.TOKEN
     WEBHOOK = Config.Webhook
-    PORT = int(os.environ.get('PORT', 5000))
+    URL = Config.URL
+    PORT = Config.PORT
     GpBase= Config.GpBase
     bitlybase = Config.bitlybase
 
