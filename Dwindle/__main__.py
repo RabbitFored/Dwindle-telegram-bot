@@ -4,7 +4,7 @@ from telegram.ext import Updater, CommandHandler, dispatcher, MessageHandler, Fi
 import emoji
 import telegram
 from bs4 import BeautifulSoup
-from Dwindle import TOKEN, modules, LOGGER, PORT, WEBHOOK
+from Dwindle import TOKEN, modules, LOGGER, PORT, WEBHOOK , URL
 from Dwindle.modules import *
 
 # Enable logging
@@ -96,13 +96,19 @@ def main():
     dispatcher.add_handler(CommandHandler("about", aboutTheBot))
     dispatcher.add_handler(CommandHandler("donate", donate.donate))
     dispatcher.add_error_handler(error)
-    updater.start_webhook(listen="0.0.0.0",
-                          port=int(PORT),
-                          url_path=TOKEN)
-    updater.bot.setWebhook(WEBHOOK + TOKEN)
+
+    if WEBHOOK:
+        LOGGER.info("Using webhooks.")
+        updater.start_webhook(listen="0.0.0.0",
+                              port=PORT,
+                              url_path=TOKEN)
+        updater.bot.set_webhook(url=URL + TOKEN)
+
+    else:
+        LOGGER.info("Using long polling.")
+        updater.start_polling(timeout=15, read_latency=4)
 
     updater.idle()
-
 
 if __name__ == '__main__':
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
