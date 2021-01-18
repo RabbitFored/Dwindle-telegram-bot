@@ -2,13 +2,13 @@
   "name": "Dwindle",
   "description": "This app does one little thing, and does it well.",
   "keywords": [
-    "productivity",
-    "HTML5",
-    "scalpel"
+    "python",
+    "telegram",
+    "bots"
   ],
-  "website": "https://github.com/RabbitFored/Dwindle/",
-  "repository": "https://github.com/RabbitFored/Dwindle/",
-  "success_url": "https://t.me/InterimOst_bot",
+  "website": "https://github.com/RabbitFored/Dwindle-telegram-bot/",
+  "repository": "https://github.com/RabbitFored/Dwindle-telegram-bot/",
+  "success_url": "https://t.me/dwindle_Bot",
   "env": {
     "Bot_Token": {
       "description": "Your bot token",
