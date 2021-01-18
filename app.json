@@ -30,6 +30,14 @@
       "description": "Port to use for your webhooks",
       "value": "8443"
     },
+      "CHROMEDRIVER_PATH": {
+      "description": "Chrome driver ENV Path",
+      "value": "/app/.chromedriver/bin/chromedriver"
+    },
+      "GOOGLE_CHROME_BIN": {
+      "description": "Chrome bin ENV Path",
+      "value": "/app/.apt/usr/bin/google-chrome"
+    },
     "BitLy_Api": {
       "description": "Get this value from https://dev.bitly.com/",
       "value": ""
