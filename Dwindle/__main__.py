@@ -3,7 +3,6 @@ import requests
 from telegram.ext import Updater, CommandHandler, dispatcher, MessageHandler, Filters, CallbackQueryHandler
 import emoji
 import telegram
-from bs4 import BeautifulSoup
 from Dwindle import TOKEN, modules, LOGGER, PORT, WEBHOOK , URL
 from Dwindle.modules import *
 
