@@ -17,7 +17,8 @@
     "BitLy_Api": {
       "description": "Get this value from https://dev.bitly.com/",
       "value": ""
-    },
+    }
+},
   "formation": {
     "web": {
       "quantity": 1,
@@ -27,4 +28,3 @@
    "buildpacks":
  [{ "url": "heroku/python" } ]
  }
-}
