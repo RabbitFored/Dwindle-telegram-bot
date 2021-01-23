@@ -4,16 +4,13 @@ import telegram
 from telegram.ext import Updater, CommandHandler, dispatcher, MessageHandler, Filters
 import emoji
 import os
-from bs4 import BeautifulSoup
-
-PORT = int(os.environ.get('PORT', 5000))
 
 TOKEN = os.environ.get('Bot_Token')
 GpApi = os.environ.get('GpLinksApi')
 GpBase = "https://gplinks.in/api?api={}&url=".format(GpApi)
 bitlyApi = os.environ.get('BitLy_Api')
 bitlybase = "https://api-ssl.bitly.com/v3/shorten?access_token={}&uri=".format(bitlyApi)
-webhook = os.environ.get('WebHook')
+
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -49,7 +46,11 @@ def short(update , context):
                               "\n\n\t\t* - *" + bi['url']+
                               "\n\n*You can Choose any of the above shortened links*", parse_mode=telegram.ParseMode.MARKDOWN)
 
-
+def unshort(update , context):
+    session = requests.Session()
+    unshortened = session.head(context.args[0], allow_redirects=True)
+    update.message.reply_text(unshortened.url)
+    
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
@@ -62,15 +63,12 @@ def main():
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help))
     dispatcher.add_handler(CommandHandler("short", short))
+    dispatcher.add_handler(CommandHandler("unshort", unshort))
     dispatcher.add_error_handler(error)
 
-    updater.start_webhook(listen="0.0.0.0",
-                          port=int(PORT),
-                          url_path=TOKEN)
-    updater.bot.setWebhook(webhook + TOKEN)
+    updater.start_polling()
 
     updater.idle()
-
 
 if __name__ == '__main__':
     main()
