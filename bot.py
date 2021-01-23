@@ -36,21 +36,39 @@ def help(update, context):
 
 
 def short(update , context):
-    gpintext = requests.get((GpBase + context.args[0])).json()
     bitlyintext = requests.get(bitlybase+context.args[0]).json()
     bi = bitlyintext['data']
 
     update.message.reply_text("*Your URL :* "+ context.args[0] +
                               "\n\n*Shortened URL : *"+
-                              "\n\n\t\t* - *" + gpintext['shortenedUrl'] +
-                              "\n\n\t\t* - *" + bi['url']+
-                              "\n\n*You can Choose any of the above shortened links*", parse_mode=telegram.ParseMode.MARKDOWN)
+                              "\n\n\t\t* - *" + bi['url'] , parse_mode=telegram.ParseMode.MARKDOWN)
 
 def unshort(update , context):
     session = requests.Session()
     unshortened = session.head(context.args[0], allow_redirects=True)
     update.message.reply_text(unshortened.url)
     
+def screen(update , context):
+
+    bot = telegram.Bot(token=TOKEN)
+    try:
+        response = requests.get(context.args[0])
+        status_code = 200
+    except requests.ConnectionError as exception:
+        status_code = 404
+
+    if status_code == 200:
+        response = requests.get('https://render-tron.appspot.com/screenshot/'+ context.args[0], stream=True)
+        if response.status_code == 200:
+               with open('screen.png', 'wb') as file:
+                     for chunk in response:
+                        file.write(chunk)
+
+        bot.send_photo(chat_id=update.message.chat_id, photo=open('screen.png', 'rb'))
+    else:
+
+        update.message.reply_text("Error 404! Page not found")
+
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
@@ -64,6 +82,7 @@ def main():
     dispatcher.add_handler(CommandHandler("help", help))
     dispatcher.add_handler(CommandHandler("short", short))
     dispatcher.add_handler(CommandHandler("unshort", unshort))
+    dispatcher.add_handler(CommandHandler("screen", screen))
     dispatcher.add_error_handler(error)
 
     updater.start_polling()
