@@ -30,8 +30,7 @@ def assist(update, context):
                               "\n\t\t- /help: Sends this message; I'll tell you more about myself!"
                               "\n\t\t- /short <url> : Shortens the provided URL"
                               "\n\t\t- /unshort <url> : Unshorts the provided URL"
-                              "\n\t\t- /screen <url> : Generated screenshot of webpage of the provided URL",
-                              parse_mode=telegram.ParseMode.MARKDOWN)
+                              "\n\t\t- /screen <url> : Generated screenshot of webpage of the provided URL", parse_mode=telegram.ParseMode.MARKDOWN)
 
 
 def short(update, context):
