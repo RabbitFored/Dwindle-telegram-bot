@@ -1,1 +1,1 @@
-worker: python -m Dwindle
+web: python -m Dwindle
