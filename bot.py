@@ -16,7 +16,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 
-def start(update):
+def start(update, context):
     firstname = update.message.chat.first_name
     update.message.reply_text("<b>Hi {} 👋 !"
                               "\n\nI'm <a href=\"tg://user?id=1451118099\">Dwindle</a> - A Simple URL shortener bot."
@@ -24,7 +24,7 @@ def start(update):
                               "\n\nHit /help to find out more about how to use me.</b>".format(firstname), parse_mode='html')
 
 
-def assist(update):
+def assist(update, context):
     update.message.reply_text("*Hey! My name is Dwindle.* "
                               "\n\nI am a link shortener bot, here to help you to shorten your links!"
                               "\nI have lots of handy features to help You"
