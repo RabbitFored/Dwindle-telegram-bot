@@ -16,15 +16,15 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 
-def start (update):
+def start(update):
     wave = (emoji.emojize(":wave:", use_aliases=True))
     firstname = update.message.chat.first_name
-    update.message.reply_text("<b>Hi {} {} ! 
+    update.message.reply_text("<b>Hi {} {} !"
                               "\n\nI'm <a href=\"tg://user?id=1451118099\">Dwindle</a> - A Simple URL shortener bot."
                               "\n\nSend me any link , I can short it for You."
                               "\n\nHit /help to find out more about how to use me.</b>".format(firstname, wave), parse_mode='html')
 
-    
+
 def assist(update):
     update.message.reply_text("*Hey! My name is Dwindle.* "
                               "\n\nI am a link shortener bot, here to help you to shorten your links!"
@@ -36,7 +36,7 @@ def assist(update):
                               "\n\t\t- /donate: Gives you info on how to support me and my creator.",
                               parse_mode=telegram.ParseMode.MARKDOWN)
 
-    
+
 def short(update, context):
     bitlyintext = requests.get(bitlybase+context.args[0]).json()
     bi = bitlyintext['data']
@@ -45,13 +45,13 @@ def short(update, context):
                               "\n\n*Shortened URL : *" +
                               "\n\n\t\t* - *" + bi['url'], parse_mode=telegram.ParseMode.MARKDOWN)
 
-    
+
 def unshort(update, context):
     session = requests.Session()
     unshortened = session.head(context.args[0], allow_redirects=True)
     update.message.reply_text(unshortened.url)
-    
-    
+
+
 def screen(update, context):
 
     bot = telegram.Bot(token=TOKEN)
@@ -73,13 +73,13 @@ def screen(update, context):
     else:
 
         update.message.reply_text("Error 404! Page not found")
-       
-    
+
+
 def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
-    
+
 def main():
     updater = Updater(TOKEN, use_context=True)
     dispatcher = updater.dispatcher
