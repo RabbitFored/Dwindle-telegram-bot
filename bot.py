@@ -1,7 +1,7 @@
 import logging
 import requests
 import telegram
-from telegram.ext import Updater, CommandHandler, dispatcher, MessageHandler, Filters
+from telegram.ext import Updater, CommandHandler
 import emoji
 import os
 
