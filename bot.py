@@ -17,12 +17,11 @@ logger = logging.getLogger(__name__)
 
 
 def start(update):
-    wave = (emoji.emojize(":wave:", use_aliases=True))
     firstname = update.message.chat.first_name
-    update.message.reply_text("<b>Hi {} {} !"
+    update.message.reply_text("<b>Hi {} 👋 !"
                               "\n\nI'm <a href=\"tg://user?id=1451118099\">Dwindle</a> - A Simple URL shortener bot."
                               "\n\nSend me any link , I can short it for You."
-                              "\n\nHit /help to find out more about how to use me.</b>".format(firstname, wave), parse_mode='html')
+                              "\n\nHit /help to find out more about how to use me.</b>".format(firstname), parse_mode='html')
 
 
 def assist(update):
