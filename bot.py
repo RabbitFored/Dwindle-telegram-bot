@@ -21,9 +21,9 @@ def start (update, context):
     firstname = update.message.chat.first_name
     update.message.reply_text("<b>Hi {} {} ! \n\nI'm <a href=\"tg://user?id=1451118099\">Dwindle</a> - A Simple URL shortener bot."
                                "\n\nSend me any link , I can short it for You."
-                              "\n\nHit /help to find out more about how to use me.</b>".format(firstname,wave) , parse_mode='html')
+                              "\n\nHit /help to find out more about how to use me.</b>".format(firstname,wave), parse_mode='html')
 
-def help(update, context):
+def assist(update, context):
     update.message.reply_text("*Hey! My name is Dwindle.* "
                               "\n\nI am a link shortener bot, here to help you to shorten your links!"
                               "\nI have lots of handy features to help You"
@@ -35,20 +35,20 @@ def help(update, context):
                               parse_mode=telegram.ParseMode.MARKDOWN)
 
 
-def short(update , context):
+def short(update, context):
     bitlyintext = requests.get(bitlybase+context.args[0]).json()
     bi = bitlyintext['data']
 
     update.message.reply_text("*Your URL :* "+ context.args[0] +
                               "\n\n*Shortened URL : *"+
-                              "\n\n\t\t* - *" + bi['url'] , parse_mode=telegram.ParseMode.MARKDOWN)
+                              "\n\n\t\t* - *" + bi['url'], parse_mode=telegram.ParseMode.MARKDOWN)
 
-def unshort(update , context):
+def unshort(update, context):
     session = requests.Session()
     unshortened = session.head(context.args[0], allow_redirects=True)
     update.message.reply_text(unshortened.url)
     
-def screen(update , context):
+def screen(update, context):
 
     bot = telegram.Bot(token=TOKEN)
     try:
@@ -60,9 +60,9 @@ def screen(update , context):
     if status_code == 200:
         response = requests.get('https://render-tron.appspot.com/screenshot/'+ context.args[0], stream=True)
         if response.status_code == 200:
-               with open('screen.png', 'wb') as file:
-                     for chunk in response:
-                        file.write(chunk)
+            with open('screen.png', 'wb') as file:
+                for chunk in response:
+                    file.write(chunk)
 
         bot.send_photo(chat_id=update.message.chat_id, photo=open('screen.png', 'rb'))
     else:
@@ -79,7 +79,7 @@ def main():
     dispatcher = updater.dispatcher
 
     dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(CommandHandler("help", help))
+    dispatcher.add_handler(CommandHandler("help", assist))
     dispatcher.add_handler(CommandHandler("short", short))
     dispatcher.add_handler(CommandHandler("unshort", unshort))
     dispatcher.add_handler(CommandHandler("screen", screen))
