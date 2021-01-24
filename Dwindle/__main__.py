@@ -30,6 +30,7 @@ def help(update, context):
                               "\n - /short <platform> <url> : Shortens the given URL"
                               "\n     *Ex:* `/short bitly https://t.me/dwindle_bot/`"
                               "\n  - /unshort <url> : Unshorts the given URL"
+                              "\n  - /about : About the bot"
                               "\n\t\t- /donate: Gives you info on how to support me and my creator.",
                               parse_mode=telegram.ParseMode.MARKDOWN, reply_to_message_id=update.message.message_id)
 
