@@ -6,8 +6,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
 import pyshorteners
 import re
 
-platforms = ['bitly', 'gplinks', 'adfly', 'chilpit', 'clckru', 'cuttly', 'dagd', 'gitio', 'isgd',
-                 'nullpointer', 'osdb', 'owly', 'post', 'qpsru', 'shortcm', 'tinycc', 'tinyurl']
+platforms = ['bitly', 'chilpit', 'nullpointer']
 
 shortmessage = "<b>Your URL : </b> {} \n\n<b>Shortened URL :</b> \n\n<b> - </b> {}"
 '''       '''
