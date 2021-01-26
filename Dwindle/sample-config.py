@@ -11,7 +11,5 @@ if not __name__.endswith("sample_config"):
   Webhook = False #Set Webhook
   PORT = 8443 # Ports currently supported for Webhooks: 443, 80, 88, 8443.
 
-  GpApi = "" #Get this at https://bitly.is/accesstoken
-  GpBase = " https://gplinks.in/api?api={}&url=".format(GpApi)
   bitlyapi = "" #Get this at https://bitly.is/accesstoken
-  bitlybase = "https://api-ssl.bitly.com/v3/shorten?access_token={}&uri=".format(bitlyapi)
+
