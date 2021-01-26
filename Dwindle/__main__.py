@@ -3,8 +3,8 @@ import requests
 from telegram.ext import Updater, CommandHandler, dispatcher, MessageHandler, Filters, CallbackQueryHandler
 import emoji
 import telegram
-from bs4 import BeautifulSoup
 from Dwindle import TOKEN, modules, LOGGER, PORT, WEBHOOK , URL
+from Dwindle.modules.short import short_buttons, platforms
 from Dwindle.modules import *
 
 # Enable logging
@@ -84,9 +84,7 @@ def donate(update, context):
     reply_markup = telegram.InlineKeyboardMarkup(keyboard)
     update.message.reply_text("Thank you for your wish to contribute. I hope you enjoyed using our services. Make a small donation/contribute to let this project alive." , reply_markup=reply_markup)
 
-def button(update, context):
-    query = update.callback_query
-    query.answer()
+
 
 
 def error(update, context):
@@ -97,8 +95,8 @@ def error(update, context):
 def main():
     updater = Updater(TOKEN, use_context=True)
     dispatcher = updater.dispatcher
-    updater.dispatcher.add_handler(CallbackQueryHandler(button))
 
+    dispatcher.add_handler(CallbackQueryHandler(short_buttons))
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help))
     dispatcher.add_handler(CommandHandler("short", short.short))
