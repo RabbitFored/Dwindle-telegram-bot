@@ -4,3 +4,4 @@ requests==2.25.1
 urllib3==1.26.2
 lxml==4.6.2
 selenium==3.141.0
+pyshorteners==1.0.1
