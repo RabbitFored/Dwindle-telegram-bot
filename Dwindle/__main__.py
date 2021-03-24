@@ -3,6 +3,8 @@ import requests
 from telegram.ext import Updater, CommandHandler, dispatcher, MessageHandler, Filters, CallbackQueryHandler
 import emoji
 import telegram
+	
+from Dwindle.modules.short import short_buttons, platforms
 from Dwindle import TOKEN, modules, LOGGER, PORT, WEBHOOK , URL
 from Dwindle.modules import *
 
@@ -20,19 +22,21 @@ def start(update, context):
         reply_to_message_id=update.message.message_id)
 
 
-def help(update, context):
+def assist(update, context):
     update.message.reply_text("*Hey! My name is Dwindle.* "
                               "\n\nI am a link shortener bot, here to help you to shorten your links!"
                               "\nI have lots of handy features to help You"
                               "\n\n*Helpful commands:*"
                               "\n\t\t- /start: Starts me! You've probably already used this."
                               "\n\t\t- /help: Sends this message; I'll tell you more about myself!"
-                              "\n - /short <platform> <url> : Shortens the given URL"
-                              "\n     *Ex:* `/short bitly https://t.me/dwindle_bot/`"
-                              "\n  - /unshort <url> : Unshorts the given URL"
-                              "\n  - /about : About the bot"
+                              "\n\t\t- /short <url> : Shortens the given URL"
+                              "\n\t\t- /unshort <url> : Unshorts the given URL"
+                              "\n\t\t- /screen <url> : Generates screenshot of webpage of the provided url"
+                              "\n\t\t- /about : About the bot."
                               "\n\t\t- /donate: Gives you info on how to support me and my creator.",
                               parse_mode=telegram.ParseMode.MARKDOWN, reply_to_message_id=update.message.message_id)
+
+
 
 
 def aboutTheBot(update, context):
@@ -100,7 +104,8 @@ def main():
     updater.dispatcher.add_handler(CallbackQueryHandler(button))
 
     dispatcher.add_handler(CommandHandler("start", start))
-    dispatcher.add_handler(CommandHandler("help", help))
+    dispatcher.add_handler(CallbackQueryHandler(short_buttons))
+    dispatcher.add_handler(CommandHandler("help", assist))
     dispatcher.add_handler(CommandHandler("short", short.short))
     dispatcher.add_handler(CommandHandler("unshort", unshort.unshort))
     dispatcher.add_handler(CommandHandler("screen", screen.screen))
