@@ -21,22 +21,21 @@ ENV = bool(os.environ.get('ENV', False))
 if ENV:
     TOKEN = os.environ.get('BOT_TOKEN', None)
     WEBHOOK = bool(os.environ.get('WEBHOOK', False))
-    URL = os.environ.get('PUBLIC_URL',"")
+    URL = os.environ.get('PUBLIC_URL', "")
     PORT = int(os.environ.get('PORT', 5000))
-    GpApi = os.environ.get('GpLinksApi')
-    GpBase = "https://gplinks.in/api?api={}&url=".format(GpApi)
     bitlyApi = os.environ.get('BitLy_Api')
-    bitlybase = "https://api-ssl.bitly.com/v3/shorten?access_token={}&uri=".format(bitlyApi)
 
 else:
-    from Dwindle import Config
-    TOKEN = Config.TOKEN
-    WEBHOOK = Config.Webhook
-    URL = Config.URL
-    PORT = Config.PORT
-    GpBase= Config.GpBase
-    bitlybase = Config.bitlybase
+    import Dwindle.config
+
+    TOKEN = config.TOKEN
+    WEBHOOK = config.Webhook
+    URL = config.URL
+    PORT = config.PORT
+    try:
+        bitlyApi = config.bitlyapi
+    except:
+        bitlyApi = null
 
 updater = telegram.ext.Updater(TOKEN)
 dispatcher = updater.dispatcher
-
