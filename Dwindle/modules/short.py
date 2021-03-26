@@ -58,11 +58,6 @@ def short(update, context):
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
 
-        elif context.args[0] == 'qpsru':
-            update.message.reply_text(shortmessage.format(context.args[1], qpsru(context.args[1])),
-                                      parse_mode='html',
-                                      reply_to_message_id=update.message.message_id)
-
         elif context.args[0] == 'tinyurl':
             update.message.reply_text(shortmessage.format(context.args[1], tinyurl(context.args[1])),
                                       parse_mode='html',
