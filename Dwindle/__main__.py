@@ -5,6 +5,9 @@ import telegram
 from Dwindle.modules.short import short_buttons
 from Dwindle import TOKEN, LOGGER, PORT, WEBHOOK , URL
 from Dwindle.modules import *
+from Dwindle.modules.short import short_buttons
+from Dwindle.modules.unshort import unshort
+from Dwindle.modules.screen import screen
 
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
@@ -104,9 +107,9 @@ def main():
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CallbackQueryHandler(short_buttons))
     dispatcher.add_handler(CommandHandler("help", assist))
-    dispatcher.add_handler(CommandHandler("short", short.short))
-    dispatcher.add_handler(CommandHandler("unshort", unshort.unshort))
-    dispatcher.add_handler(CommandHandler("screen", screen.screen))
+    dispatcher.add_handler(CommandHandler("short", short))
+    dispatcher.add_handler(CommandHandler("unshort", unshort))
+    dispatcher.add_handler(CommandHandler("screen", screen))
     dispatcher.add_handler(CommandHandler("about", aboutTheBot))
     dispatcher.add_handler(CommandHandler("donate", donate))
     dispatcher.add_error_handler(error)
