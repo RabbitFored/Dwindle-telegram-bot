@@ -1,11 +1,9 @@
 import logging
-import requests
-from telegram.ext import Updater, CommandHandler, dispatcher, MessageHandler, Filters, CallbackQueryHandler
+from telegram.ext import Updater, CommandHandler, dispatcher, CallbackQueryHandler
 import emoji
 import telegram
-	
-from Dwindle.modules.short import short_buttons, platforms
-from Dwindle import TOKEN, modules, LOGGER, PORT, WEBHOOK , URL
+from Dwindle.modules.short import short_buttons
+from Dwindle import TOKEN, LOGGER, PORT, WEBHOOK , URL
 from Dwindle.modules import *
 
 # Enable logging
