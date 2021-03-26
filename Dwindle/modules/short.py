@@ -1,11 +1,6 @@
 from Dwindle import bitlyApi
-import requests
-from Dwindle import dispatcher
-from telegram.ext import CommandHandler
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import pyshorteners
-import re
-import json
 
 platforms = ['adfly','bitly',  'chilpit', 'clckru', 'cuttly', 'dagd', 'gitio', 'isgd',
                  'nullpointer', 'osdb', 'owly', 'post', 'qpsru', 'shortcm', 'tinycc', 'tinyurl']
@@ -132,10 +127,6 @@ def short_buttons(update,context):
         query.edit_message_text(text=shortmessage.format(link, shorten), parse_mode='html')
     elif platform == 'gitio':
         shorten = gitio(link)
-        query.edit_message_text(text=shortmessage.format(link, shorten), parse_mode='html')
-
-    elif platform == 'gplinks':
-        shorten = gplinks(link)
         query.edit_message_text(text=shortmessage.format(link, shorten), parse_mode='html')
 
     elif platform == 'isgd':
