@@ -9,3 +9,28 @@ For any questions/issues using this bot, please head to [this chat](https://t.me
 #### The Easy Way
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RabbitFored/Dwindle-telegram-bot/tree/beta)
+
+### Deploy in a VPS
+
+Edit config file
+
+Install requirements
+```
+python3 -m pip install -r requirements.txt
+```
+
+Make new screen
+```
+screen -S Dwindle
+```
+
+Run the code
+
+```
+python-3 m Dwindle
+```
+
+detach from the screen
+ ```
+ ctrl+a and d
+ ```
