@@ -25,20 +25,6 @@ def start(update, context):
                              reply_to_message_id=update.message.message_id)
 
 def assist(update, context):
-    update.message.reply_text("*Hey! My name is Dwindle.* "
-                              "\n\nI am a link shortener bot, here to help you to shorten your links!"
-                              "\nI have lots of handy features to help You"
-                              "\n\n*Helpful commands:*"
-                              "\n\t\t- /start: Starts me! You've probably already used this."
-                              "\n\t\t- /help: Sends this message; I'll tell you more about myself!"
-                              "\n\t\t- /short <url> : Shortens the given URL"
-                              "\n\t\t- /unshort <url> : Unshorts the given URL"
-                              "\n\t\t- /screen <url> : Generates screenshot of webpage of the provided url"
-                              "\n\t\t- /about : About the bot."
-                              "\n\t\t- /donate: Gives you info on how to support me and my creator.",
-                              parse_mode=telegram.ParseMode.MARKDOWN, reply_to_message_id=update.message.message_id)
-
-def assist(update, context):
     update.message.reply_text("I have lots of handy features to help You."
                               "\n\n*Helpful commands:*"
                               "\n\t\t- /short <url>: _Shortens the given URL_"
