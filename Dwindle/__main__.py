@@ -38,6 +38,25 @@ def assist(update, context):
                               "\n\t\t- /donate: Gives you info on how to support me and my creator.",
                               parse_mode=telegram.ParseMode.MARKDOWN, reply_to_message_id=update.message.message_id)
 
+def assist(update, context):
+    update.message.reply_text("I have lots of handy features to help You."
+                              "\n\n*Helpful commands:*"
+                              "\n\t\t- /short <url>: _Shortens the given URL_"
+                              "\n\t\t- /unshort <url>: _Expand the given URL_"
+                              "\n\t\t- /screen <url>: _Generates screenshot of the webpage of URL_"
+                                
+                              "\n\n*Other bot commands:*"
+                              "\n\t\t- /start: _Starts me!_"
+                              "\n\t\t- /help: _Sends this message_"
+                              "\n\t\t- /about: _Know more about me_"
+                              "\n\t\t- /donate: _Provides info on how to support me and my creators_",
+                              
+                              reply_markup=telegram.InlineKeyboardMarkup([ 
+                                           [ telegram.InlineKeyboardButton("GET HELP", url="https://telegram.me/ostrichdiscussion") ] 
+                                                                        ]),
+                              parse_mode=telegram.ParseMode.MARKDOWN,
+                              reply_to_message_id=update.message.message_id)
+
 
 
 
