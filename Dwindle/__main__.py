@@ -17,13 +17,12 @@ logger = logging.getLogger(__name__)
 def start(update, context):
   bot_first_name = context.bot.get_me().first_name
   user_first_name = update.effective_user.first_name
-
-  update.message.reply_text(
-                  text = f"<b>Hi {html.escape(user_first_name)}👋! \n"
-                         f"I'm {html.escape(bot_first_name)} - I can do many things.\n\n"
-                          "Check </b>/help<b> to find out more about how to use me.</b>",
-                  parse_mode='html',
-                  reply_to_message_id=update.message.message_id)
+    
+  update.message.reply_text( f"<b>Hi {html.escape(user_first_name)}👋! \n"
+                             f"I'm {html.escape(bot_first_name)} - I can do many things.\n\n"
+                             "Check </b>/help<b> to find out more about how to use me.</b>",
+                             parse_mode='html',
+                             reply_to_message_id=update.message.message_id)
 
 def assist(update, context):
     update.message.reply_text("*Hey! My name is Dwindle.* "
