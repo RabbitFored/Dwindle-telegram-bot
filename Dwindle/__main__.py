@@ -47,30 +47,21 @@ def assist(update, context):
 
 
 def aboutTheBot(update, context):
-    """Log Errors caused by Updates."""
-
-    keyboard = [
-        [
-            telegram.InlineKeyboardButton((emoji.emojize(":loop:", use_aliases=True)) + "Channel",
-                                          url="t.me/theostrich"),
-            telegram.InlineKeyboardButton("👥Support Group", callback_data='2'),
-        ],
-        [telegram.InlineKeyboardButton((emoji.emojize(":bookmark:", use_aliases=True)) + "Add Me In Group",
-                                       url="https://t.me/dwindle_Bot?startgroup=new")],
-    ]
-
-    reply_markup = telegram.InlineKeyboardMarkup(keyboard)
-
-    update.message.reply_text("<b>Hey! My name is Dwindle.</b>"
-                              "\nI can handle links in different ways."
-                              "\n\n<b>About Me :</b>"
-                              "\n\n  - <b>Name</b>        : Dwindle"
-                              "\n\n  - <b>Creator</b>      : @theostrich"
-                              "\n\n  - <b>Language</b>  : Python 3"
-                              "\n\n  - <b>Library</b>       : <a href=\"https://github.com/python-telegram-bot/python-telegram-bot/\">python-telegram-bot</a>"
-                              "\n\n  - <b>Source Code</b>  : <a href=\"https://github.com/RabbitFored/Dwindle/\">Dwindle-Source</a>"
-                              "\n\nIf you enjoy using me and want to help me survive, do donate with the /donate command - my creator will be very grateful! Doesn't have to be much - every little helps! Thanks for reading :)",
-                              parse_mode='html', reply_markup=reply_markup, disable_web_page_preview=True)
+  bot_first_name = context.bot.get_me().first_name
+  update.message.reply_text(f"<b>Hey! I am {html.escape(bot_first_name)}.</b>"
+                             "\nI can handle URLs in different ways."
+                             "\n\n<b>About Me :</b>"
+                            f"\n  - <b>Name</b>        : {html.escape(bot_first_name)}"
+                             "\n  - <b>Creator</b>      : @quantumbackdoor"
+                             "\n  - <b>Language</b>  : Python 3"
+                             "\n  - <b>Library</b>       : <a href=\"https://github.com/python-telegram-bot/python-telegram-bot/\">python-telegram-bot</a>"
+                             "\n  - <b>Source Code</b>  : <a href=\"https://github.com/RabbitFored/Dwindle/\">Dwindle-Source</a>"
+                             "\n\nIf you enjoy using me and want to contribute, /donate to help us maintain this project. Doesn't have to be much - every little helps!\nThanks for reading :)",
+                            parse_mode='html',
+                            reply_markup=telegram.InlineKeyboardMarkup([
+                                                   [ telegram.InlineKeyboardButton("➰ Updates", url="t.me/theostrich"),
+                                                     telegram.InlineKeyboardButton("👥 Support Group",url="t.me/ostrichdiscussion") ] ]),
+                            disable_web_page_preview=True)
 
 
 def button(update, context):
