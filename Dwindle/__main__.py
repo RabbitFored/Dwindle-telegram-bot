@@ -91,12 +91,10 @@ def error(update, context):
 def chooseFeature(update,context):
   update.message.reply_text('''<b>Select an option:</b>''',                             
                              reply_markup=telegram.InlineKeyboardMarkup([
-                                    [ telegram.InlineKeyboardButton("Short", callback_data="short"),
-                                      telegram.InlineKeyboardButton("Unshort",callback_data="unshort"),
-                                      telegram.InlineKeyboardButton("Screen",callback_data="screen") ]]), 
+                                    [ telegram.InlineKeyboardButton("Short", callback_data="short")    ],
+                                    [ telegram.InlineKeyboardButton("Unshort",callback_data="unshort") ],
+                                    [ telegram.InlineKeyboardButton("Screen",callback_data="screen")   ]]), 
                              parse_mode='html')
-
-
 
 def main():
     updater = Updater(TOKEN, use_context=True)
