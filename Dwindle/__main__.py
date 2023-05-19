@@ -1,5 +1,5 @@
 import logging
-from telegram.ext import Updater, CommandHandler, dispatcher, CallbackQueryHandler
+from telegram.ext import Updater, CommandHandler, dispatcher, CallbackQueryHandler,MessageHandler, Filters
 import emoji
 import telegram
 from Dwindle.modules.short import short_buttons
@@ -88,12 +88,22 @@ def error(update, context):
     """Log Errors caused by Updates."""
     logger.warning('Update "%s" caused error "%s"', update, context.error)
 
+def chooseFeature(update,context):
+  update.message.reply_text('''<b>Select an option:</b>''',                             
+                             reply_markup=telegram.InlineKeyboardMarkup([
+                                    [ telegram.InlineKeyboardButton("Short", callback_data="short"),
+                                      telegram.InlineKeyboardButton("Unshort",callback_data="unshort"),
+                                      telegram.InlineKeyboardButton("Screen",callback_data="screen") ]]), 
+                             parse_mode='html')
+
+
 
 def main():
     updater = Updater(TOKEN, use_context=True)
     dispatcher = updater.dispatcher
     updater.dispatcher.add_handler(CallbackQueryHandler(button))
-
+    
+    dispatcher.add_handler(MessageHandler(Filters.text & Filters.entity("url"), chooseFeature))
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CallbackQueryHandler(short_buttons))
     dispatcher.add_handler(CommandHandler("help", assist))
