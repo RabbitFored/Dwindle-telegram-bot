@@ -94,7 +94,8 @@ def chooseFeature(update,context):
                                     [ telegram.InlineKeyboardButton("Short", callback_data="short")    ],
                                     [ telegram.InlineKeyboardButton("Unshort",callback_data="unshort") ],
                                     [ telegram.InlineKeyboardButton("Screen",callback_data="screen")   ]]), 
-                             parse_mode='html')
+                             parse_mode='html',
+                             reply_to_message_id=update.message.message_id)
 
 def main():
     updater = Updater(TOKEN, use_context=True)
