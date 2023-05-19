@@ -1,65 +1,86 @@
-from Dwindle import bitlyApi
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-import pyshorteners
 
-platforms = ['adfly','bitly',  'chilpit', 'clckru', 'cuttly', 'dagd', 'gitio', 'isgd',
-                 'nullpointer', 'osdb', 'owly', 'post', 'qpsru', 'shortcm', 'tinycc', 'tinyurl']
-
-shortmessage = "<b>Your URL : </b> {} \n\n<b>Shortened URL :</b> \n\n<b> - </b> {}"
-'''       '''
+def remove_prefix(text, prefix):
+    if text.startswith(prefix):
+        return text[len(prefix):]
+    return text
+  
 def short(update, context):
-    validurl = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
-    if len(context.args)==2:
+    
+    if bool(update.message):
+       message = update.message
+       text = remove_prefix(update.message.text , "/short ")
+    if bool(update.callback_query):
+       message = update.callback_query.message
+       text = update.callback_query.message.reply_to_message.text
+      
+    context.args = text.split(" ")
+
+    if len(context.args) == 2:
         if context.args[0] == 'adfly':
-            update.message.reply_text(shortmessage.format(context.args[1], adfly(context.args[1])),
-                                      parse_mode='html',
-                                      reply_to_message_id=update.message.message_id)
+            message.reply_text(shortmessage.format(context.args[1], adfly(context.args[1])),
+                               parse_mode='html',
+                               reply_to_message_id=update.message.message_id)
 
         elif context.args[0] == 'bitly':
-            update.message.reply_text(shortmessage.format(context.args[1], bitly(bitlyApi, context.args[1])),
+            message.reply_text(shortmessage.format(context.args[1], bitly(bitlyApi, context.args[1])),
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
 
         elif context.args[0] == 'chilpit':
-            update.message.reply_text(shortmessage.format(context.args[1], chilpit(context.args[1])),
+            message.reply_text(shortmessage.format(context.args[1], chilpit(context.args[1])),
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
 
         elif context.args[0] == 'clckru':
-            update.message.reply_text(shortmessage.format(context.args[1], clckru(context.args[1])),
+            message.reply_text(shortmessage.format(context.args[1], clckru(context.args[1])),
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
 
         elif context.args[0] == 'dagd':
-            update.message.reply_text(shortmessage.format(context.args[1], dagd(context.args[1])),
+            message.reply_text(shortmessage.format(context.args[1], dagd(context.args[1])),
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
         elif context.args[0] == 'gitio':
-            update.message.reply_text(shortmessage.format(context.args[1], gitio(context.args[1])),
+            message.reply_text(shortmessage.format(context.args[1], gitio(context.args[1])),
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
 
+        elif context.args[0] == 'gplinks':
+            message.reply_text(shortmessage.format(context.args[1], gplinks(context.args[1])),
+                                      parse_mode='html',
+                                      reply_to_message_id=update.message.message_id)
         elif context.args[0] == 'isgd':
-            update.message.reply_text(shortmessage.format(context.args[1], isgd(context.args[1])),
+            message.reply_text(shortmessage.format(context.args[1], isgd(context.args[1])),
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
 
         elif context.args[0] == 'nullpointer':
-            update.message.reply_text(shortmessage.format(context.args[1], nullpointer(context.args[1])),
+            message.reply_text(shortmessage.format(context.args[1], nullpointer(context.args[1])),
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
         elif context.args[0] == 'osdb':
-            update.message.reply_text(shortmessage.format(context.args[1], osdb(context.args[1])),
+            message.reply_text(shortmessage.format(context.args[1], osdb(context.args[1])),
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
 
-        elif context.args[0] == 'owly':
-            update.message.reply_text(shortmessage.format(context.args[1], owly(context.args[1])),
+
+        elif context.args[0] == 'qpsru':
+            message.reply_text(shortmessage.format(context.args[1], qpsru(context.args[1])),
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
 
         elif context.args[0] == 'tinyurl':
-            update.message.reply_text(shortmessage.format(context.args[1], tinyurl(context.args[1])),
+            message.reply_text(shortmessage.format(context.args[1], tinyurl(context.args[1])),
+                                      parse_mode='html',
+                                      reply_to_message_id=update.message.message_id)
+
+        elif context.args[0] == 'cutr':
+            URL = "https://cutr.ml/api/short"
+            PARAMS = {'origUrl': context.args[1]}
+            r = requests.post(URL, data=PARAMS)
+            res = r.json()
+            print(res)
+            message.reply_text(shortmessage.format(context.args[1], res['shortUrl']),
                                       parse_mode='html',
                                       reply_to_message_id=update.message.message_id)
 
@@ -77,6 +98,7 @@ def short(update, context):
 
                 ],
                 [
+                    InlineKeyboardButton("gplinks", callback_data=f'gplinks||{context.args[0]}'),
                     InlineKeyboardButton("isgd", callback_data=f'isgd||{context.args[0]}'),
                     InlineKeyboardButton("nullpointer", callback_data=f'nullpointer||{context.args[0]}'),
 
@@ -86,12 +108,15 @@ def short(update, context):
                     InlineKeyboardButton("qpsru", callback_data=f'qpsru||{context.args[0]}'),
                     InlineKeyboardButton("tinyurl", callback_data=f'tinyurl||{context.args[0]}'),
                 ],
+                [
+                    InlineKeyboardButton("cutr", callback_data=f'cutr||{context.args[0]}'),
+                ],
             ]
             reply_markup = InlineKeyboardMarkup(keyboard)
-            update.message.reply_text("Please choose some platform:", reply_markup=reply_markup)
+            message.reply_text("Please choose some platform:", reply_markup=reply_markup)
 
     else:
-        update.message.reply_text("Provide some valid URL")
+        message.reply_text("Provide some valid URL")
 
 def short_buttons(update,context):
 
