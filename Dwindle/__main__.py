@@ -91,18 +91,31 @@ def error(update, context):
 def chooseFeature(update,context):
   update.message.reply_text('''<b>Select an option:</b>''',                             
                              reply_markup=telegram.InlineKeyboardMarkup([
-                                    [ telegram.InlineKeyboardButton("Short", callback_data="short")    ],
-                                    [ telegram.InlineKeyboardButton("Unshort",callback_data="unshort") ],
-                                    [ telegram.InlineKeyboardButton("Screen",callback_data="screen")   ]]), 
+                                    [ telegram.InlineKeyboardButton("Short", callback_data="1short")    ],
+                                    [ telegram.InlineKeyboardButton("Unshort",callback_data="1unshort") ],
+                                    [ telegram.InlineKeyboardButton("Screen",callback_data="1screen")   ]]), 
                              parse_mode='html',
                              reply_to_message_id=update.message.message_id)
 
+def callback(update,context):
+    query = update.callback_query
+ 
+    if query.data =='1short':
+        short.short(update,context)   
+    if query.data =='1unshort':
+        unshort.unshort(update,context)    
+    if query.data =='1screen':
+        screen.screen(update,context)   
+        
+    query.answer()
 def main():
     updater = Updater(TOKEN, use_context=True)
     dispatcher = updater.dispatcher
     updater.dispatcher.add_handler(CallbackQueryHandler(button))
     
     dispatcher.add_handler(MessageHandler(Filters.text & Filters.entity("url"), chooseFeature))
+    dispatcher.add_handler(CallbackQueryHandler(callback,pattern='^1'))
+    dispatcher.add_handler(CallbackQueryHandler(short_buttons))
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CallbackQueryHandler(short_buttons))
     dispatcher.add_handler(CommandHandler("help", assist))
