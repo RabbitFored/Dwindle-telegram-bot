@@ -7,10 +7,23 @@ import emoji
 import os
 from Dwindle.drawable import *
 
-bot = telegram.Bot(token=TOKEN)
 
+def remove_prefix(text, prefix):
+    if text.startswith(prefix):
+        return text[len(prefix):]
+    return text
+  
 def screen(update, context):
-    chat_id = update.message.chat_id
+      
+    if bool(update.message):
+       message = update.message
+       text = remove_prefix(update.message.text , "/screen ")
+    if bool(update.callback_query):
+       message = update.callback_query.message
+       text = update.callback_query.message.reply_to_message.text
+      
+    context.args = text.split(" ")
+
     url = context.args[0]
 
     try:
@@ -30,7 +43,7 @@ def screen(update, context):
         sleep(1)
         driver.get_screenshot_as_file("screen.png")
         driver.quit()
-        bot.send_photo(chat_id=chat_id, photo=open('screen.png', 'rb'))
+        message.reply_photo(photo=open('screen.png', 'rb'))
     else:
-        bot.send_photo(chat_id=chat_id, photo=open('Dwindle/drawable/404_error.png','rb'),caption="OOPS! Web page not Found"+(emoji.emojize(":confused:",use_aliases=True)))
+        message.reply_photo(photo="https://cdn.dribbble.com/users/935591/screenshots/15664793/media/90c2e1253482c777325f6172940087e3.jpeg",caption="OOPS! Web page not Found")
 
