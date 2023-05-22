@@ -84,9 +84,15 @@ def button(update, context):
     query.answer()
 
 
+
 def error(update, context):
-    """Log Errors caused by Updates."""
-    logger.warning('Update "%s" caused error "%s"', update, context.error)
+  """Log Errors caused by Updates."""
+
+  text = f"<b>Error ID: <code>007</code></b>\n"\
+         f"<b>Instance:</b>\n<code>{html.escape(str(update))}</code>\n"\
+         f"<b>Error:</b>\n<code>{html.escape(str(context.error))}</code>"
+  context.bot.send_message(text=text, chat_id = logChannel, parse_mode='html')
+  
 
 def chooseFeature(update,context):
   update.message.reply_text('''<b>Select an option:</b>''',                             
